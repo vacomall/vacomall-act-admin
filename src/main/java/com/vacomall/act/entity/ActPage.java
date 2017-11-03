@@ -39,7 +39,13 @@ public class ActPage  implements Serializable{
 	 */
 	@Column(length=255)
 	private String actDesc;
-
+	/**
+	 * 活动分类
+	 */
+	@ManyToOne
+	@JoinColumn(name="actCategory")
+	private ActCategory actCategory;
+	
 	/**
 	 * 内容
 	 */
@@ -133,7 +139,13 @@ public class ActPage  implements Serializable{
 	public void setActState(Integer actState) {
 		this.actState = actState;
 	}
-	
-	
+
+	public ActCategory getActCategory() {
+		return actCategory;
+	}
+
+	public void setActCategory(ActCategory actCategory) {
+		this.actCategory = actCategory;
+	}	
 	
 }
