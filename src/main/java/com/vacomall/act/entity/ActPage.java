@@ -13,6 +13,12 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+/**
+ * 
+ * Entity
+ * @author Edward.Yao
+ * 2017年11月3日下午3:57:09
+ */
 @Entity(name="tb_act_page")
 public class ActPage  implements Serializable{
 
