@@ -1,4 +1,4 @@
-package com.github.foreyer;
+package com.vacomall.act;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
