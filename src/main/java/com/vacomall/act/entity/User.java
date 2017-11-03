@@ -50,7 +50,7 @@ public class User implements Serializable{
 	/**
 	 * 角色
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.PERSIST,CascadeType.MERGE})  
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})  
     @JoinTable(name="sys_user_role",  
     joinColumns={@JoinColumn(name="user_id",referencedColumnName="id") },    
       inverseJoinColumns={ @JoinColumn(name="role_id",referencedColumnName="id")    
@@ -61,7 +61,7 @@ public class User implements Serializable{
 	/**
 	 * 权限
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.PERSIST,CascadeType.MERGE})  
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})  
     @JoinTable(name="sys_user_menu",  
     joinColumns={@JoinColumn(name="user_id",referencedColumnName="id") },    
       inverseJoinColumns={ @JoinColumn(name="menu_id",referencedColumnName="id")    

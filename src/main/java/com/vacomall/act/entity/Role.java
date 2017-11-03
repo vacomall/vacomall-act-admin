@@ -50,7 +50,7 @@ public class Role implements Serializable{
 	/**
 	 * 权限
 	 */
-	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.PERSIST,CascadeType.MERGE})  
+	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})  
     @JoinTable(name="sys_role_menu",  
     joinColumns={@JoinColumn(name="role_id",referencedColumnName="id") },    
       inverseJoinColumns={ @JoinColumn(name="menu_id",referencedColumnName="id")    

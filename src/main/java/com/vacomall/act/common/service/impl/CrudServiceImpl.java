@@ -34,12 +34,56 @@ public abstract class CrudServiceImpl<R extends JpaRepository<T, ID>, T, ID exte
 	@Autowired private R r;
 	
 	@Transactional
+	@Override
 	public void save(T t) {
 		r.save(t);
 	}
 
+	
 	@Transactional
+	@Override
 	public void updateById(T t,ID id) {
+		this.update(t, id, false);
+	}
+	
+	
+	@Transactional
+	@Override
+	public void updateUseNullById(T t, ID id) {
+		this.update(t, id, true);
+	}
+
+	@Transactional
+	@Override
+	public void delete(ID id) {
+		r.delete(id);
+	}
+	
+	@Transactional
+	@Override
+	public void delete(ID[] ids) {
+		if(ArrayUtils.isEmpty(ids)){
+			throw new RuntimeException(" delete ids is empty ");
+		}
+		for(ID id : ids){
+			r.delete(id);
+		}
+	}
+	
+	@Override
+	public T findOne(ID id){
+		return r.findOne(id);
+	}
+	
+	@Override
+	public Page<T> page(int page, int size) {
+		
+		Pageable pageable = new PageRequest(page-1, size);
+		return r.findAll(pageable);
+		
+	}
+	
+	private void update(T t,ID id,boolean useNull) {
 		T rt = r.findOne(id);
 		Field[] fields = rt.getClass().getDeclaredFields();
 		for(Field field : fields){
@@ -50,41 +94,21 @@ public abstract class CrudServiceImpl<R extends JpaRepository<T, ID>, T, ID exte
 			 Object value;
 			try {
 				value = PropertyUtils.getProperty(t, name); //传入的值若果为 null 或 ""则不更新
-				if(value == null || value.equals("")){
-					continue;
+				if(useNull){
+					PropertyUtils.setProperty(rt, name, value);
+				}else{
+					if(value == null || value.equals("")){
+						continue;
+					}else{
+						PropertyUtils.setProperty(rt, name, value);
+					}
 				}
-				PropertyUtils.setProperty(rt, name,value);
+				
 			} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 				// TODO Auto-generated catch block
 				throw new RuntimeException(e.getMessage());
 			}
 			
 		}
-	}
-	
-	@Transactional
-	public void delete(ID id) {
-		r.delete(id);
-	}
-	
-	@Transactional
-	public void delete(ID[] ids) {
-		if(ArrayUtils.isEmpty(ids)){
-			throw new RuntimeException(" delete ids is empty ");
-		}
-		for(ID id : ids){
-			r.delete(id);
-		}
-	}
-	
-	public T findOne(ID id){
-		return r.findOne(id);
-	}
-	
-	public Page<T> page(int page, int size) {
-		
-		Pageable pageable = new PageRequest(page-1, size);
-		return r.findAll(pageable);
-		
 	}
 }
