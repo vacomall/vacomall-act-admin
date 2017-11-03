@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Vacomall-Login</title>
+<!-- Custom Theme files -->
+<link href="/css/login.css" rel="stylesheet" type="text/css" media="all"/>
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<!--header start here-->
+<div class="login-form">
+<div class="top-login"></div>
+<h1>VACOMALL</h1>
+<div class="login-top">
+<form method="post" action="/doLogin">
+	<div class="login-ic">
+		<i ></i>
+		<input type="hidden" name="return_url" th:value="${return_url}">
+		<input type="text"  name="userName" value="User name" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'User name';}"/>
+		<div class="clear"> </div>
+	</div>
+	<div class="login-ic">
+		<i class="icon"></i>
+		<input type="password" name="password" value="password" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'password';}"/>
+		<div class="clear"> </div>
+	</div>
+
+	<div class="log-bwn">
+		<input type="submit"  value="Login" >
+	</div>
+	<p style="color: red" th:text="${error}">
+	</form>
+</div>
+<p class="copy">© vacomall.com - 万颗商城 </p>
+</div>		
+<!--header start here-->
+</body>
+</html>
