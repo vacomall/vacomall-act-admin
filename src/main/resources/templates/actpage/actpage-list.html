@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="common/head" />
+</head>
+<body>
+	<div class="x-body">
+		<form class="layui-form"
+			style="padding-bottom: 10px; text-align: left;">
+			活动标题：
+			<div class="layui-inline">
+				<input class="layui-input" type="text" name="actName"
+					autocomplete="off" placeholder="活动标题">
+			</div>
+			活动状态：
+			<div class="layui-inline">
+				<select name="actState" lay-verify="">
+					<option value="">--请选择--</option>
+					<option value="1">已上线</option>
+					<option value="2">维护中</option>
+					<option value="3">已下线</option>
+					<option value="4">已删除</option>
+				</select>
+			</div>
+			<button class="layui-btn" lay-submit lay-filter="search">
+				<i class="layui-icon">&#xe615;</i>
+			</button>
+		</form>
+
+		<xblock>
+		<button class="layui-btn dialog" data-url="/actpage/add"
+			data-title="新增活动">
+			<i class="layui-icon">&#xe608;</i>添加
+		</button>
+		<button class="layui-btn layui-btn-danger del-all"
+			data-url="/user/delete">
+			<i class="layui-icon">&#xe640;</i>批量删除
+		</button>
+		</xblock>
+
+		<table class="layui-table"
+			lay-data="{height:'full-230', url:'/actpage/list', page:true, id:'table',limit:20}"
+			lay-filter="table">
+			<thead>
+				<tr>
+					<th lay-data="{checkbox:true, fixed: true}"></th>
+					<th lay-data="{field:'actName', width:100}">活动标题</th>
+					<th lay-data="{field:'actCategory', width:100}">活动分类</th>
+					<th lay-data="{field:'actDesc', width:150}">活动描述</th>
+					<th lay-data="{field:'actContent', width:150}">活动内容</th>
+					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">状态</th>
+					<th lay-data="{field:'user', width:100}">创建者</th>
+					<th lay-data="{field:'createDate', width:180,sort: true,}">创建时间</th>
+					<th lay-data="{field:'updateCount', width:100}">更新次数</th>
+					
+					<th
+						lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
+				</tr>
+			</thead>
+		</table>
+
+		<script type="text/html" id="state-tpl">
+ 					 {{#  if(d.userState == 1){ }}
+   						 <font color='green'>启用</font>
+ 						 {{#  } else { }}
+    					<font color='red'>禁止</font>
+  					{{#  } }}
+		</script>
+
+		<script type="text/html" id="row-bar">
+ 			 	<a class="layui-btn layui-btn-small" lay-event="edit" data-url="/user/edit" data-title="编辑用户" data-width="800" data-height="600" ><i class="layui-icon">&#xe642;</i> 编辑</a>
+  				<a class="layui-btn layui-btn-danger layui-btn-small" lay-event="del" data-url='/user/delete'><i class="layui-icon">&#xe640;</i> 删除</a>
+		</script>
+	</div>
+	<div th:replace="common/js"></div>
+	<div th:replace="common/setting"></div>
+	<script type="text/javascript">
+		layui.use('xtable');
+	</script>
+</body>
+</html>
