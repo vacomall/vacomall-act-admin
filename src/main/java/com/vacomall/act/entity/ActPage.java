@@ -151,5 +151,4 @@ public class ActPage  implements Serializable{
 	public void setActCategory(ActCategory actCategory) {
 		this.actCategory = actCategory;
 	}	
-	
 }
