@@ -57,7 +57,6 @@ public class ActPage  implements Serializable{
 	@Lob
 	@Column(columnDefinition="TEXT", nullable=false)
 	private String actContent;
-	
 	/**
 	 * 创建时间
 	 */
