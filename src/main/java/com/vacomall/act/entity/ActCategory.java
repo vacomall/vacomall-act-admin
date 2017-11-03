@@ -52,5 +52,4 @@ public class ActCategory  implements Serializable{
 		this.catDesc = catDesc;
 	}
 	
-	
 }
