@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="common/head" />
+</head>
+<body>
+<div class="x-body">
+    <form class="layui-form layui-form-pane" action="/role/doAuth">
+    	<input type="hidden" name="roleId" th:value="${role.id}" />
+        <div class="layui-form-item">
+            <table class="layui-table">
+            	<tr th:each="mt,st : ${menuTrees}">
+            		<td><input type="checkbox" name="mid" th:value="${mt.menu.id}"  th:checked="${mt.hasAuth}" /> <span th:text="${mt.menu.text}"></span> </td>
+            		<td>
+            			<table>
+            				<tr th:each="mt2: ${mt.menuTrees}">
+            					<td><input type="checkbox" name="mid" th:value="${mt2.menu.id}" th:checked="${mt2.hasAuth}" /> <span th:text="${mt2.menu.text}"></span></td>
+            					<td>
+            						<table>
+			            				<tr >
+			            					<td th:each="mt3: ${mt2.menuTrees}"><input type="checkbox" name="mid" th:checked="${mt3.hasAuth}" th:value="${mt3.menu.id}" /> <span th:text="${mt3.menu.text}"></span></td>
+			            				</tr>
+			            			</table>
+            					</td>
+            				</tr>
+            			</table>
+            		</td>
+            	</tr>
+            </table>
+        </div>
+		  <div class="layui-form-item">
+		  	<div class="layui-input-block">
+		    		<button class="layui-btn" lay-submit lay-filter="submit">立即提交</button>
+		    		<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		  	</div>
+		</div>
+    </form>
+</div>
+<div th:replace="common/js"></div>
+<div th:replace="common/setting"></div>
+<script type="text/javascript">
+	layui.use('xform');
+</script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.vacomall.act.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -127,12 +129,9 @@ public class Menu implements Serializable{
 	}
 
 	public Menu() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Menu(Long id, String text, String uri, String resource, Long pid, String icon, Integer sort, Integer deep) {
-		super();
 		this.id = id;
 		this.text = text;
 		this.uri = uri;
@@ -142,6 +141,22 @@ public class Menu implements Serializable{
 		this.sort = sort;
 		this.deep = deep;
 	}
+
+	public Menu(Long id) {
+		this.id = id;
+	}
 	
-	
+	public Menu pid(Long pid){
+		this.pid = pid;
+		return this;
+	}
+
+	public List<Menu> ids(Long[] mids) {
+		// TODO Auto-generated method stub
+		List<Menu> menus = new ArrayList<>();
+		for(Long l : mids){
+			menus.add(new Menu(l));
+		}
+		return menus;
+	}
 }

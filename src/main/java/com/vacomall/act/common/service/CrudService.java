@@ -18,10 +18,16 @@ public interface CrudService<T,ID> {
 	void save(T t);
 	
 	/**
-	 * 更新实体
+	 * 更新实体,忽略控制字段
 	 * @param t
 	 */
 	void updateById(T t,ID id) ;
+	
+	/**
+	 * 更新实体
+	 * @param t
+	 */
+	void updateUseNullById(T t,ID id) ;
 	
 	/**
 	 * 删除一个实体
