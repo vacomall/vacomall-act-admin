@@ -51,7 +51,6 @@ public class ActPage  implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="actCategory")
 	private ActCategory actCategory;
-	
 	/**
 	 * 内容
 	 */
