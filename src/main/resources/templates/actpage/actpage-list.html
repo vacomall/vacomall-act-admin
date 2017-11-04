@@ -48,11 +48,11 @@
 					<th lay-data="{field:'actCategory', width:100}">活动分类</th>
 					<th lay-data="{field:'actDesc', width:150}">活动描述</th>
 					<th lay-data="{field:'actContent', width:150}">活动内容</th>
-					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">状态</th>
+					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">活动状态</th>
 					<th lay-data="{field:'user', width:100}">创建者</th>
 					<th lay-data="{field:'createDate', width:180,sort: true,}">创建时间</th>
 					<th lay-data="{field:'updateCount', width:100}">更新次数</th>
-					
+
 					<th
 						lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
 				</tr>
@@ -60,11 +60,15 @@
 		</table>
 
 		<script type="text/html" id="state-tpl">
- 					 {{#  if(d.userState == 1){ }}
-   						 <font color='green'>启用</font>
+                        {{#  if(d.actState === 1){ }}
+   						 <font color='green'>已上线</font>
+                        {{#} else if(d.actState === 2){ }}
+                         <font color='red'>维护中</font>
+                        {{#} else if(d.actState === 3){ }}
+                         <font color='red'>已下线</font>
  						 {{#  } else { }}
-    					<font color='red'>禁止</font>
-  					{{#  } }}
+    					<font color='red'>已删除</font>
+  					   {{#  } }}
 		</script>
 
 		<script type="text/html" id="row-bar">
