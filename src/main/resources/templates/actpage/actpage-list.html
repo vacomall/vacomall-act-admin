@@ -45,19 +45,25 @@
 				<tr>
 					<th lay-data="{checkbox:true, fixed: true}"></th>
 					<th lay-data="{field:'actName', width:100}">活动标题</th>
-					<th lay-data="{field:'actCategory', width:100}">活动分类</th>
+					<th id="actCategory"
+						lay-data="{field:'actCategory', width:100, templet: '#actCategory'}">活动分类</th>
 					<th lay-data="{field:'actDesc', width:150}">活动描述</th>
 					<th lay-data="{field:'actContent', width:150}">活动内容</th>
 					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">活动状态</th>
 					<th lay-data="{field:'user', width:100}">创建者</th>
 					<th lay-data="{field:'createDate', width:180,sort: true,}">创建时间</th>
 					<th lay-data="{field:'updateCount', width:100}">更新次数</th>
-
 					<th
 						lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
 				</tr>
 			</thead>
 		</table>
+		<script th:inline="javascript" type="text/javascript" id="actCategory">  
+              {{#  if( d.actCategory != null){ }}  
+                  {{ d.actCategory.catName }} 
+                   {{#  }  }}  
+       
+          </script>
 
 		<script type="text/html" id="state-tpl">
                         {{#  if(d.actState === 1){ }}

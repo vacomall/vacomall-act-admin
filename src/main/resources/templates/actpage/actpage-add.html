@@ -10,7 +10,7 @@
 				<label for="L_title" class="layui-form-label">活动标题</label>
 				<div class="layui-input-block">
 					<input type="text" id="L_title" name="actName"
-						lay-verify="required" placeholder="请输入活动分类名称" autocomplete="off"
+						lay-verify="required" placeholder="请输入活动标题" autocomplete="off"
 						class="layui-input">
 				</div>
 			</div>
@@ -23,7 +23,7 @@
 			</div>
 			<div class="layui-form-item">
 				<select name="actState" lay-verify="">
-					<option value="">请选择活动状态</option>
+					<option value="">--请选择活动状态--</option>
 					<option value="1">已上线</option>
 					<option value="2">维护中</option>
 					<option value="3">已下线</option>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="layui-form-item">
 				<select name="actCategory" lay-verify="">
-					<option value="">--请选择--</option>
+					<option value="">--请选择活动分类--</option>
 				   <span th:each="category : ${categoryList}">
 					<option th:value="${category.id}"><span th:text="${category.catName}"></span></option></span>
 				</select>
