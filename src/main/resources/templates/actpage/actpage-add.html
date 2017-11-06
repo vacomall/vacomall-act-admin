@@ -32,7 +32,7 @@
 			</div>
 			<div class="layui-form-item">
 				<select name="actCategory" lay-verify="">
-					<option value="">--请选择--</option>
+					<option value="">--请选择活动分类--</option>
 				   <span th:each="category : ${categoryList}">
 					<option th:value="${category.id}"><span th:text="${category.catName}"></span></option></span>
 				</select>
