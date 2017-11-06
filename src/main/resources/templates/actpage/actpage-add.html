@@ -2,6 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <head th:replace="common/head" />
+<script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.js"></script>
+<script type="text/javascript" charset="utf-8" src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 	<div class="x-body">
@@ -14,15 +18,9 @@
 						class="layui-input">
 				</div>
 			</div>
-			<div class="layui-form-item layui-form-text">
-				<label class="layui-form-label">活动描述</label>
-				<div class="layui-input-block">
-					<textarea name="actDesc" placeholder="请输入活动描述"
-						class="layui-textarea"></textarea>
-				</div>
-			</div>
+		
 			<div class="layui-form-item">
-				<select name="actState" lay-verify="">
+				<select name="actState">
 					<option value="">请选择活动状态</option>
 					<option value="1">已上线</option>
 					<option value="2">维护中</option>
@@ -33,12 +31,23 @@
 			<div class="layui-form-item">
 				<select name="actCategory" lay-verify="">
 					<option value="">--请选择活动分类--</option>
-				   <span th:each="category : ${categoryList}">
-					<option th:value="${category.id}"><span th:text="${category.catName}"></span></option></span>
+					<span th:each="category : ${categoryList}">
+						<option th:value="${category.id}"><span
+								th:text="${category.catName}"></span></option>
+				</span>
 				</select>
 			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">活动描述</label>
+				<div class="layui-input-block">
+					<textarea name="actDesc" placeholder="请输入活动描述"
+						class="layui-textarea"></textarea>
+				</div>
+			</div>
 			<div class="layui-form-item">
-			<textarea id="actcount" style="display: none;" name="actcount"></textarea>
+				<div class="col-md-10" style="width: 100%;">
+					<textarea id="editor" name="actContent" type="text/plain"></textarea>
+				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
@@ -50,14 +59,12 @@
 	</div>
 	<div th:replace="common/js"></div>
 	<div th:replace="common/setting"></div>
+	
+	<script type="text/javascript">
+		var ue = UE.getEditor('editor');
+	</script>
 	<script type="text/javascript">
 		layui.use('xform');
-		layui.use('layedit', function(){
-			  var layedit = layui.layedit;
-			  layedit.build('actcount'); //建立编辑器
-			  layedit.getContent('actcount')
-			});
-		
 	</script>
 </body>
 </html>

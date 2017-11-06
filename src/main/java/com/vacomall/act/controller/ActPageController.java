@@ -58,9 +58,18 @@ public class ActPageController {
 		actpage.setCreateDate(new Date());
 		actpage.setUser(user);
 		actpage.setUpdateCount(0L);
-		actpage.setActContent("rewrew");
 		actPageService.save(actpage);
 		return Rest.ok();
+	}
+	
+	@RequestMapping("/edit")
+	public String edit(Long id,Model model){
+		ActCategory actCategory = new ActCategory();
+		List<ActCategory> list = actcategoryService.findByExample(actCategory);
+		model.addAttribute("categoryList", list);
+		model.addAttribute("actPage", actPageService.findOne(id));
+		return "actpage/actpage-edit";
+		
 	}
 
 }
