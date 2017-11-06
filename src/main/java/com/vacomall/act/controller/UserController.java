@@ -1,6 +1,9 @@
 package com.vacomall.act.controller;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,7 @@ import com.vacomall.act.entity.Role;
 import com.vacomall.act.entity.User;
 import com.vacomall.act.service.IRoleService;
 import com.vacomall.act.service.IUserService;
+import com.vacomall.act.util.RoleBeenUtil;
 import com.vacomall.act.util.ShiroUtil;
 
 @Controller
@@ -54,7 +58,7 @@ public class UserController {
 	
 	@ResponseBody
 	@RequestMapping("/doAdd")
-	public Rest doAdd(User user,String confPassword){
+	public Rest doAdd(User user,String confPassword,@RequestParam(value="roleId[]",required=false) Long[] roleIds){
 		user.setCreateTime(new Date());
 		if(user.getUserState() == null){
 			user.setUserState(UserState.OFF.getState());
@@ -63,6 +67,12 @@ public class UserController {
 			return Rest.failure("两次输入的密码不一致");
 		}
 		user.setPassword(ShiroUtil.md51024Pwd(user.getPassword(), user.getUserName()));
+		if(!ArrayUtils.isEmpty(roleIds)){
+			Set<Role> roles = roleService.findByIdIn(Arrays.asList(roleIds));
+			if(!roles.isEmpty()){
+				user.setRoles(roles);
+			}
+		}
 		userService.save(user);
 		return Rest.ok();
 	}
@@ -84,15 +94,24 @@ public class UserController {
 	
 	@RequestMapping("/edit")
 	public String edit(Long id,Model model){
-		model.addAttribute("user", userService.findOne(id));
+		User user = userService.findOne(id);
+		model.addAttribute("user", user);
+		List<Role> roles = roleService.findAll();
+		model.addAttribute("roleBeens", RoleBeenUtil.formRoles(user.getRoles(),roles));
 		return "user/user-edit";
 	}
 	
 	@ResponseBody
 	@RequestMapping("/doEdit")
-	public Rest doEdit(User submitUser){
+	public Rest doEdit(User submitUser,@RequestParam(value="roleId[]",required=false) Long[] roleIds){
 		if(submitUser.getUserState() == null){
 			submitUser.setUserState(0);
+		}
+		if(!ArrayUtils.isEmpty(roleIds)){
+			Set<Role> roles = roleService.findByIdIn(Arrays.asList(roleIds));
+			if(!roles.isEmpty()){
+				submitUser.setRoles(roles);
+			}
 		}
 		userService.updateById(submitUser, submitUser.getId());
 		return Rest.ok();

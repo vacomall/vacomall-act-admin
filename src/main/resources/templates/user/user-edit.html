@@ -35,6 +35,14 @@
 	      <input type="checkbox" name="userState" lay-skin="switch" value="1" lay-text="启用|禁止" th:checked="${user.userState}">
 	    </div>
 	  </div>
+	  <div class="layui-form-item" pane>
+	    <label class="layui-form-label">角色</label>
+	    <div class="layui-input-block">
+	    	<span th:each="roleBeen:${roleBeens}">
+	      		<input type="checkbox" name="roleId"  th:value="${roleBeen.role.id}" th:checked="${roleBeen.hasRole}">&nbsp;<span th:text="${roleBeen.role.roleName}"></span> 
+	    	</span>
+	    </div>
+	  </div>
 	 <div class="layui-form-item">
 	   <label class="layui-form-label">描述</label>
 	   <div class="layui-input-block">
