@@ -38,7 +38,12 @@
     </tr>
   </thead>
 </table>
-
+       
+        <script th:inline="javascript" type="text/javascript" id="actCategory">  
+              {{#  if( d.actCategory != null){ }}  
+                  {{ d.actCategory.catName }} 
+                   {{#  }  }} 
+              </script>
 		<script type="text/html" id="state-tpl">
  					 {{#  if(d.userState == 1){ }}
    						 <font color='green'>启用</font>
