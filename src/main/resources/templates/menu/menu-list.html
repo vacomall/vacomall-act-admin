@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="common/head" />
+</head>
+<body>
+<div class="x-body">
+      <form class="layui-form" style="padding-bottom: 10px;text-align: left;">
+	     菜单名称：
+	  <div class="layui-inline">
+	    <input class="layui-input" type="text" name="text" autocomplete="off" placeholder="菜单名称">
+	  </div>
+	 <button class="layui-btn"  lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
+</form>
+<table class="layui-table" lay-data="{height:'full-230', url:'/menu/json', page:true, id:'table',limit:20}" lay-filter="table">
+  <thead>
+    <tr>
+      <th lay-data="{checkbox:true, fixed: true}"></th>
+      <th lay-data="{field:'code', width:150}">编码</th>
+      <th lay-data="{field:'text', width:250}">名称</th>
+      <th lay-data="{field:'uri', width:150}">地址</th>
+      <th lay-data="{field:'resource', width:150}">资源</th>
+      <th lay-data="{field:'sort', width:150}">排序</th>
+      <th lay-data="{field:'iocn', width:150}">图标</th>
+    </tr>
+  </thead>
+</table>
+ </div>
+<div th:replace="common/js"></div>
+<div th:replace="common/setting"></div>
+<script type="text/javascript">
+	layui.use('xtable');
+</script>
+</body>
+</html>
