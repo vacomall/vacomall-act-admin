@@ -12,8 +12,9 @@ layui.define(['layer','table','element','form'], function(exports){
 		 var url = $(this).attr('data-url');
 		 width=$(me).attr('data-width') || 800,
 		 height=$(me).attr('data-height') || 600,
-		 title = $(me).attr('data-title') || '';
-		 x_admin_show(title,url,width,height);
+		 title = $(me).attr('data-title') || '',
+		 full = $(me).attr('data-full') || false;
+		 x_admin_show(title,url,width,height,full);
 	});
 	
 	//监听table的工具条
@@ -23,7 +24,8 @@ layui.define(['layer','table','element','form'], function(exports){
 			width=$(me).attr('data-width'),
 			height=$(me).attr('data-height'),
 			id=$(me).attr('data-id') || 'id',
-			title = $(me).attr('data-title') || '';
+			title = $(me).attr('data-title') || '',
+		full = $(me).attr('data-full') || false;
 	    var data = obj.data;
 	    
 	    //删除
@@ -42,9 +44,9 @@ layui.define(['layer','table','element','form'], function(exports){
 	      
 	      //编辑
 	     } else if(obj.event === 'edit'){
-	    	x_admin_show(title,url+'?id='+data[id],width,height);
+	    	x_admin_show(title,url+'?id='+data[id],width,height,full);
 	    } else {
-	    	x_admin_show(title,url+'?id='+data[id],width,height);
+	    	x_admin_show(title,url+'?id='+data[id],width,height,full);
 	    }
 	  });
 	 

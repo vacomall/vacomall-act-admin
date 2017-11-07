@@ -63,6 +63,11 @@ public class Menu implements Serializable{
 	 * 深度,级数
 	 */
 	private Integer deep;
+	
+	/**
+	 * 编码
+	 */
+	private String code;
 
 	public Long getId() {
 		return id;
@@ -126,6 +131,14 @@ public class Menu implements Serializable{
 
 	public void setDeep(Integer deep) {
 		this.deep = deep;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public Menu() {

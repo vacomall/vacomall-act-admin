@@ -7,7 +7,7 @@
 	w		弹出层宽度（缺省调默认值）
 	h		弹出层高度（缺省调默认值）
 */
-function x_admin_show(title,url,w,h){
+function x_admin_show(title,url,w,h,full){
 	if (title == null || title == '') {
 		title=false;
 	};
@@ -20,9 +20,13 @@ function x_admin_show(title,url,w,h){
 	if (h == null || h == '') {
 		h=($(window).height() - 50);
 	};
+	var _area =  [w+'px', h +'px'];
+	if(full || full == 'true'){
+		_area = ['100%', '100%'];
+	}
 	layer.open({
 		type: 2,
-		area: [w+'px', h +'px'],
+		area: _area,
 		fix: false, //不固定
 		maxmin: true,
 		shadeClose: true,
