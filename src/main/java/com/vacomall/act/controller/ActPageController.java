@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vacomall.act.common.bean.Rest;
+import com.vacomall.act.constant.ActPageState;
 import com.vacomall.act.entity.ActCategory;
 import com.vacomall.act.entity.ActPage;
 import com.vacomall.act.entity.User;
@@ -28,7 +29,6 @@ public class ActPageController {
 
 	@Autowired
 	private IActCategoryService actcategoryService;
-
 
 	@RequestMapping(value = { "", "/" })
 	public String index() {
@@ -61,15 +61,24 @@ public class ActPageController {
 		actPageService.save(actpage);
 		return Rest.ok();
 	}
-	
+
 	@RequestMapping("/edit")
-	public String edit(Long id,Model model){
+	public String edit(Long id, Model model) {
 		ActCategory actCategory = new ActCategory();
 		List<ActCategory> list = actcategoryService.findByExample(actCategory);
 		model.addAttribute("categoryList", list);
 		model.addAttribute("actPage", actPageService.findOne(id));
 		return "actpage/actpage-edit";
-		
+
+	}
+
+	@RequestMapping("/delete")
+	@ResponseBody
+	public Rest delete(@RequestParam("ids[]")  Long ids[]) {
+		ActPage actpage = new ActPage();
+		actpage.setActState(ActPageState.已删除.getState());
+		actPageService.updateById(actpage, ids[0]);
+		return Rest.ok();
 	}
 
 }

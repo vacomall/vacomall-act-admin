@@ -84,7 +84,12 @@ public class ActCategoryController {
 		if (ArrayUtils.isEmpty(ids)) {
 			return Rest.failure("客户端传入对象id为空");
 		}
-		actCategoryService.delete(ids);
+		try {
+			actCategoryService.delete(ids);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			throw new RuntimeException("该活动分类已被使用,不可删除");
+		}
 		return Rest.ok();
 	}
 
