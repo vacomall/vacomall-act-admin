@@ -30,14 +30,15 @@
          <div class="layui-form-item" pane>
 	    <label class="layui-form-label">状态</label>
 	    <div class="layui-input-block">
-	      <input type="checkbox" name="userState" lay-skin="switch" value="1" lay-text="启用|禁止">
+	      <input type="radio" name="userState" value="1" title="启用" checked="checked">
+	      <input type="radio" name="userState" value="0" title="禁止">
 	    </div>
 	  </div>
 	  <div class="layui-form-item" pane>
 	    <label class="layui-form-label">角色</label>
 	    <div class="layui-input-block">
 	    	<span th:each="role:${roleList}">
-	      		<input type="checkbox" name="roleId" th:value="${role.id}">&nbsp;<span th:text="${role.roleName}"></span> 
+	      		<input type="checkbox" name="roleId" th:value="${role.id}" th:title="${role.roleName}"> 
 	    	</span>
 	    </div>
 	  </div>

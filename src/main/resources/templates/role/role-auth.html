@@ -10,15 +10,15 @@
         <div class="layui-form-item">
             <table class="layui-table">
             	<tr th:each="mt,st : ${menuTrees}">
-            		<td><input type="checkbox" name="mid" th:value="${mt.menu.id}"  th:checked="${mt.hasAuth}" /> <span th:text="${mt.menu.text}"></span> </td>
+            		<td><input type="checkbox" name="mid" th:value="${mt.menu.id}"  th:checked="${mt.hasAuth}" th:title="${mt.menu.text}" /></td>
             		<td>
             			<table>
             				<tr th:each="mt2: ${mt.menuTrees}">
-            					<td><input type="checkbox" name="mid" th:value="${mt2.menu.id}" th:checked="${mt2.hasAuth}" /> <span th:text="${mt2.menu.text}"></span></td>
+            					<td><input type="checkbox" name="mid" th:value="${mt2.menu.id}" th:checked="${mt2.hasAuth}" th:title="${mt2.menu.text}" /></td>
             					<td>
-            						<table>
+            						<table >
 			            				<tr >
-			            					<td th:each="mt3: ${mt2.menuTrees}"><input type="checkbox" name="mid" th:checked="${mt3.hasAuth}" th:value="${mt3.menu.id}" /> <span th:text="${mt3.menu.text}"></span></td>
+			            					<td  style="border: none;" th:each="mt3: ${mt2.menuTrees}"><input type="checkbox" name="mid" th:checked="${mt3.hasAuth}" th:value="${mt3.menu.id}" th:title="${mt3.menu.text}" /></td>
 			            				</tr>
 			            			</table>
             					</td>
