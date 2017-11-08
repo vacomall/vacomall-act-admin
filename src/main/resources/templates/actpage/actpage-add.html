@@ -4,7 +4,6 @@
 <head th:replace="common/head" />
 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"></script>
-<!--  <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.js"></script>-->
 <script type="text/javascript" charset="utf-8" src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
@@ -31,14 +30,11 @@
 			<div class="layui-form-item">
 				<select name="actCategory" lay-verify="">
 					<option value="">--请选择活动分类--</option>
-					<span th:each="category : ${categoryList}">
-						<option th:value="${category.id}"><span
+						<option th:each="category : ${categoryList}" th:value="${category.id}"><span
 								th:text="${category.catName}"></span></option>
-				</span>
-				   <span th:each="category : ${categoryList}">
-					<option th:value="${category.id}"><span th:text="${category.catName}"></span></option></span>
 				</select>
 			</div>
+			
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label">活动描述</label>
 				<div class="layui-input-block">

@@ -7,13 +7,14 @@
 <script type="text/javascript" charset="utf-8"
 	src="../lib/ueditor/ueditor.all.js"></script>
 <script type="text/javascript" charset="utf-8"
-	src="../lib/ueditor/ueditor.js"></script>
-<script type="text/javascript" charset="utf-8"
 	src="../lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 	<div class="x-body">
 		<form class="layui-form layui-form-pane" action="/actpage/doEdit">
+			<input type="hidden" name="id" th:value="${actPage.id}">
+			 <input
+				type="hidden" name="updateCount" th:value="${actPage.updateCount}">
 			<div class="layui-form-item">
 				<label for="L_title" class="layui-form-label">活动标题</label>
 				<div class="layui-input-block">
@@ -23,7 +24,7 @@
 				</div>
 			</div>
 
-			<div class="layui-form-item" name="sel" lay-filter="sadaS" templet:"#test">
+			<div class="layui-form-item" lay-filter="">
 				<select name="actState">
 					<option value="">--请选择活动状态--</option>
 					<option value="1" th:selected="${actPage.actState eq 1}">已上线</option>
@@ -33,12 +34,11 @@
 				</select>
 			</div>
 			<div class="layui-form-item">
-				<select name="actCategory" lay-verify="" >
+				<select name="actCategory" lay-verify="">
 					<option value="">--请选择活动分类--</option>
-					<span th:each="category : ${categoryList}">
-						<option th:value="${category.id}" th:selected="${actPage.actState eq 1}"><span
+						<option th:each="category : ${categoryList}" th:value="${category.id}"
+							th:selected="${category.id eq actPage.actCategory.id}"><span
 								th:text="${category.catName}"></span></option>
-				</span>
 				</select>
 			</div>
 			<div class="layui-form-item layui-form-text">

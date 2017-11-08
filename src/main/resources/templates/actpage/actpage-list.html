@@ -56,12 +56,12 @@
 		</table>
 		
 		
-        <script th:inline="javascript" type="text/javascript" id="user">  
+        <script th:inline="javascript" type="text/html" id="user">  
               {{#  if( d.user != null){ }}  
                   {{ d.user.userName }}
                    {{#  }  }} 
               </script>
-		<script th:inline="javascript" type="text/javascript" id="actCategory">  
+		<script th:inline="javascript" type="text/html" id="actCategory">  
               {{#  if( d.actCategory != null){ }}  
                   {{ d.actCategory.catName }} 
                    {{#  }  }}  

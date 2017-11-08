@@ -71,6 +71,15 @@ public class ActPageController {
 		return "actpage/actpage-edit";
 
 	}
+	
+	@RequestMapping("/doEdit")
+	@ResponseBody
+	public Rest doEdit(ActPage actPage) {
+		actPage.setUpdateCount(actPage.getUpdateCount() + 1L);
+		actPage.setUser(ShiroUtil.getSessionUser());
+		actPageService.updateById(actPage, actPage.getId());
+		return Rest.ok();
+	}
 
 	@RequestMapping("/delete")
 	@ResponseBody
