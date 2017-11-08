@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<script type="text/javascript" charset="utf-8" src="/lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/ueditor/ueditor.all.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 	<form action="/upload/image" method="post"
 		enctype="multipart/form-data">
-		<input type="file" name="file" /> <input type="submit" value="上传" />
+		<textarea id="editor" name="actContent" type="text/plain"></textarea>
 	</form>
+	<script type="text/javascript">
+		var ue = UE.getEditor('editor',{
+			toolbars: [
+		           ['fullscreen', 'source', 'undo', 'redo'],
+		           ['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc'],
+		           ['simpleupload','insertimage','edittable',  'edittd',  'link']],
+			 autoHeightEnabled: true,
+			 autoFloatEnabled: true,
+			 initialFrameHeight: 500
+		});
+	</script>
 </body>
 </html>

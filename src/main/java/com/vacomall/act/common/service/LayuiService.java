@@ -2,7 +2,9 @@ package com.vacomall.act.common.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 /**
@@ -38,4 +40,6 @@ public interface LayuiService<T,ID> extends CrudService<T, ID>{
 	 * @return
 	 */
 	List<T> findByExample(T t);
+	
+	Page<T> findPageByExample(Example<T> example, Pageable pageable);
 }

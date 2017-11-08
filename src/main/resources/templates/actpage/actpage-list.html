@@ -30,7 +30,7 @@
 
 		<xblock>
 		<button class="layui-btn dialog" data-url="/actpage/add"
-			data-title="新增活动">
+			data-title="新增活动" data-full="true">
 			<i class="layui-icon">&#xe608;</i>添加
 		</button>
 		</xblock>
@@ -49,20 +49,19 @@
 					<th lay-data="{field:'user', width:100,templet: '#user'}">创建者</th>
 					<th lay-data="{field:'createDate', width:180,sort: true,}">创建时间</th>
 					<th lay-data="{field:'updateCount', width:100}">更新次数</th>
-					<th
-						lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
+					<th lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
 				</tr>
 			</thead>
 		</table>
 		
 		
-        <script th:inline="javascript" type="text/html" id="user">  
-              {{#  if( d.user != null){ }}  
+        <script type="text/html" id="user">  
+              {{#  if( d.user != ''){ }}  
                   {{ d.user.userName }}
                    {{#  }  }} 
               </script>
-		<script th:inline="javascript" type="text/html" id="actCategory">  
-              {{#  if( d.actCategory != null){ }}  
+		<script type="text/html"  id="actCategory">  
+              {{#  if( d.actCategory != ''){ }}  
                   {{ d.actCategory.catName }} 
                    {{#  }  }}  
        
@@ -81,7 +80,7 @@
 		</script>
 
 		<script type="text/html" id="row-bar">
- 			 	<a class="layui-btn layui-btn-small" lay-event="edit" data-url="/actpage/edit" data-title="编辑活动" data-width="800" data-height="600" ><i class="layui-icon">&#xe642;</i> 编辑</a>
+ 			 	<a class="layui-btn layui-btn-small" lay-event="edit" data-url="/actpage/edit" data-title="编辑用户" data-width="800" data-height="600" data-full="true"><i class="layui-icon">&#xe642;</i> 编辑</a>
   				<a class="layui-btn layui-btn-danger layui-btn-small" lay-event="del" data-url='/actpage/delete'><i class="layui-icon">&#xe640;</i> 删除</a>
 		</script>
 	</div>

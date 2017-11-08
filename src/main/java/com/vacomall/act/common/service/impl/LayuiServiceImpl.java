@@ -64,5 +64,11 @@ public abstract class LayuiServiceImpl<R extends JpaRepository<T, ID>, T, ID ext
 		return r.findAll(example);
 	}
 
+	@Override
+	public Page<T> findPageByExample(Example<T> example, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return r.findAll(example, pageable);
+	}
+
 	
 }

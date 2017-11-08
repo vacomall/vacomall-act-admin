@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,22 +15,19 @@ import com.vacomall.act.common.controller.UploadHelperController;
 @RequestMapping("/upload")
 public class UploadController extends UploadHelperController{
 
-	@PostMapping("/image")
+	@RequestMapping("/image")
 	@ResponseBody
 	public Map<String, Object> uploadImage(MultipartFile file){
 		 Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			String url = this.uploadBosImage(file, request);
-			map.put("state", "SUCCESS");  
-			map.put("url", url);  
-			map.put("size", file.getSize());  
-			map.put("original", file.getOriginalFilename());  
-			map.put("type", file.getContentType()); 
+			map.put("error",0);  
+			map.put("url", url);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			map.put("state", "ERROR"); 
-			map.put("error",e.getMessage());
+			map.put("error",1);  
+			map.put("message", e.getMessage());
 		}
 		return map;
 	}
