@@ -17,4 +17,6 @@ public interface IMenuService extends LayuiService<Menu, Long>{
 	 */
 	List<Menu> findByIdIn(List<Long> ids);
 
+	List<MenuTree> findMenuByUid(Long uid);
+
 }
