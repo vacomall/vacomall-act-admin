@@ -20,7 +20,6 @@
 					<option value="1">已上线</option>
 					<option value="2">维护中</option>
 					<option value="3">已下线</option>
-					<option value="4">已删除</option>
 				</select>
 			</div>
 			<button class="layui-btn" lay-submit lay-filter="search">
@@ -41,15 +40,14 @@
 			<thead>
 				<tr>
 					<th lay-data="{checkbox:true, fixed: true}"></th>
-					<th lay-data="{field:'actName', width:100}">活动标题</th>
+					<th lay-data="{field:'actName', width:150}">活动标题</th>
 					<th lay-data="{field:'actCategory',width:120,templet: '#actCategory'}">活动分类</th>
-					<th lay-data="{field:'actDesc', width:150}">活动描述</th>
-					<th lay-data="{field:'actContent', width:150}">活动内容</th>
-					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">活动状态</th>
+					<th lay-data="{field:'actDesc', width:300}">活动描述</th>
 					<th lay-data="{field:'user', width:100,templet: '#user'}">创建者</th>
 					<th lay-data="{field:'createDate', width:180,sort: true,}">创建时间</th>
 					<th lay-data="{field:'updateCount', width:100}">更新次数</th>
-					<th lay-data="{fixed: 'right', width:200, align:'center', toolbar: '#row-bar'}">操作</th>
+					<th lay-data="{field:'actState', width:80,templet:'#state-tpl'}">活动状态</th>
+					<th lay-data="{fixed: 'right', width:250, align:'center', toolbar: '#row-bar'}">操作</th>
 				</tr>
 			</thead>
 		</table>
@@ -69,18 +67,17 @@
 
 		<script type="text/html" id="state-tpl">
                         {{#  if(d.actState === 1){ }}
-   						 <font color='green'>已上线</font>
+   						  <span class="layui-badge-dot layui-bg-green" title="上线"></span>
                         {{#} else if(d.actState === 2){ }}
-                         <font color='red'>维护中</font>
-                        {{#} else if(d.actState === 3){ }}
-                         <font color='red'>已下线</font>
+							 <span class="layui-badge-dot layui-bg-orange"></span>
  						 {{#  } else { }}
-    					<font color='red'>已删除</font>
+							 <span class="layui-badge-dot"></span>
   					   {{#  } }}
 		</script>
 
 		<script type="text/html" id="row-bar">
- 			 	<a class="layui-btn layui-btn-small" lay-event="edit" data-url="/actpage/edit" data-title="编辑用户" data-width="800" data-height="600" data-full="true"><i class="layui-icon">&#xe642;</i> 编辑</a>
+ 			 	<a class="layui-btn layui-btn-small" lay-event="edit" data-url="/actpage/edit" data-title="编辑活动" data-width="800" data-height="600" data-full="true"><i class="layui-icon">&#xe642;</i> 编辑</a>
+  				<a class="layui-btn layui-btn-small" lay-event="link" data-url='/actpage/preview'><i class="layui-icon">&#x1005;</i> 预览</a>
   				<a class="layui-btn layui-btn-danger layui-btn-small" lay-event="del" data-url='/actpage/delete'><i class="layui-icon">&#xe640;</i> 删除</a>
 		</script>
 	</div>

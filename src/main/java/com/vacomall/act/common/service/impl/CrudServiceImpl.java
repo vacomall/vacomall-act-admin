@@ -77,7 +77,6 @@ public abstract class CrudServiceImpl<R extends JpaRepository<T, ID>, T, ID exte
 	
 	@Override
 	public Page<T> page(int page, int size) {
-		
 		Pageable pageable = new PageRequest(page-1, size);
 		return r.findAll(pageable);
 		

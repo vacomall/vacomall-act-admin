@@ -76,7 +76,7 @@ public class ActPage  implements Serializable{
 	private Long updateCount;
 	
 	/**
-	 * 活动状态，1-已上线,2-维护中,3-已下线,4-已删除
+	 * 活动状态，1-已上线,2-维护中,3-已下线
 	 */
 	private Integer actState;
 

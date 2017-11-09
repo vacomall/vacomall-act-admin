@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vacomall.act.common.bean.Rest;
-import com.vacomall.act.constant.ActPageState;
 import com.vacomall.act.entity.ActCategory;
 import com.vacomall.act.entity.ActPage;
 import com.vacomall.act.entity.User;
@@ -84,9 +83,7 @@ public class ActPageController {
 	@RequestMapping("/delete")
 	@ResponseBody
 	public Rest delete(@RequestParam("ids[]")  Long ids[]) {
-		ActPage actpage = new ActPage();
-		actpage.setActState(ActPageState.已删除.getState());
-		actPageService.updateById(actpage, ids[0]);
+		actPageService.delete(ids);
 		return Rest.ok();
 	}
 

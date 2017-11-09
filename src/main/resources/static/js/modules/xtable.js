@@ -45,6 +45,8 @@ layui.define(['layer','table','element','form'], function(exports){
 	      //编辑
 	     } else if(obj.event === 'edit'){
 	    	x_admin_show(title,url+'?id='+data[id],width,height,full);
+	    } else if(obj.event === 'link'){
+	    	window.open(url+'?id='+data[id]); 
 	    } else {
 	    	x_admin_show(title,url+'?id='+data[id],width,height,full);
 	    }
