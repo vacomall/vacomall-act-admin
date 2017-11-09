@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +41,8 @@ public class ActPageController {
 	@ResponseBody
 	public Rest list(@RequestParam(value = "page", defaultValue = "1") Integer page,
 			@RequestParam(value = "limit", defaultValue = "10") Integer size, ActPage actPage) {
-		Page<ActPage> pageData = actPageService.page(page, size, actPage);
+		Sort sort = new Sort(new Order(Direction.ASC,"id"));
+		Page<ActPage> pageData = actPageService.page(page, size, sort,actPage);
 		return Rest.okCountData(pageData.getTotalElements(), pageData.getContent());
 	}
 
